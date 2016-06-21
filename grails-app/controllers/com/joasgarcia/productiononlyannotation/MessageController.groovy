@@ -5,7 +5,7 @@ class MessageController {
     def messageService
 
     def productionOnly() {
-        render messageService.runProductionOnly()
+        render messageService.runProductionOnly(params.message)
     }
 
     def alwaysRun() {

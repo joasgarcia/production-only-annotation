@@ -15,6 +15,7 @@ class MessageControllerIntegrationSpec extends IntegrationSpec {
         def controller = new MessageController()
 
         when:
+        controller.params.message = "Foo"
         controller.productionOnly()
 
         then:

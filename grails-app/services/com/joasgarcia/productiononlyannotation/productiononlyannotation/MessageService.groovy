@@ -7,8 +7,8 @@ import grails.transaction.Transactional
 class MessageService {
 
     @ProductionOnly
-    public String runProductionOnly() {
-        return "OK"
+    public String runProductionOnly(String message) {
+        return "OK - ${message}"
     }
 
     public String alwaysRun() {

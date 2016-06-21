@@ -10,11 +10,13 @@ import org.aspectj.lang.annotation.Pointcut
 @Aspect
 class ProductionOnlyInterceptor {
 
-    @Around("@annotation(com.joasgarcia.productiononlyannotation.ProductionOnly)")
-    def foo(ProceedingJoinPoint joinPoint) {
+    @Around("@annotation(com.joasgarcia.productiononlyannotation.ProductionOnly) && args(messageParameter)")
+    def interceptAllMethodsWithProductionOnlyAnnotation(ProceedingJoinPoint joinPoint, String messageParameter) {
         if (!Environment.getCurrent().equals(Environment.PRODUCTION)) return "NOK"
 
-        joinPoint.proceed()
+        String changedParameter = "${messageParameter} - ${new Date()}"
+
+        joinPoint.proceed([changedParameter] as Object[])
     }
 }
 
